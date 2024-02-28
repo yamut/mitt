@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     @csrf
     <title>Mitt</title>
@@ -8,7 +8,7 @@
 <body>
 <div class="row">
     <div class="col-12 w-100 d-flex justify-content-center">
-        <h1>Mitt</h1>
+        <img class="img-fluid mt-2" alt="mitt" style="height: 50px;" src="{{ \Illuminate\Support\Facades\Vite::asset('resources/images/mitt.svg') }}"/>
     </div>
 </div>
 <div class="row d-flex justify-content-center">

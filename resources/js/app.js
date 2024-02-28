@@ -5,6 +5,10 @@ import jQuery from 'jquery';
 
 window.$ = jQuery;
 
+import.meta.glob([
+    '../images/**',
+]);
+
 $(function () {
     $('#save').on('click', function () {
         $('#messages').empty();
