@@ -25,5 +25,5 @@ Route::get('/settings/get', [\App\Http\Controllers\SettingsController::class, 'g
     ->name('settings.get');
 Route::get('/caught', [\App\Http\Controllers\CatchController::class, 'caught'])
     ->name('caught');
-Route::get('/catch/{anything}', [\App\Http\Controllers\CatchController::class, 'catch'])
+Route::any('/catch/{anything}', [\App\Http\Controllers\CatchController::class, 'catch'])
     ->name('catch');
