@@ -23,6 +23,8 @@ Route::post('/settings/save', [\App\Http\Controllers\SettingsController::class, 
     ->name('settings.save');
 Route::get('/settings/get', [\App\Http\Controllers\SettingsController::class, 'get'])
     ->name('settings.get');
+Route::get('/settings/clear', [\App\Http\Controllers\SettingsController::class, 'clear'])
+    ->name('settings.clear');
 Route::get('/caught', [\App\Http\Controllers\CatchController::class, 'caught'])
     ->name('caught');
 Route::any('/catch/{anything}', [\App\Http\Controllers\CatchController::class, 'catch'])

@@ -68,4 +68,17 @@ $(function () {
 
             })
     }, 5000);
-})
+    $('#clear-data').on('click', function () {
+        $.get($(this).data('source'))
+            .then(() => {
+                $('tbody', $resultsTable).empty()
+                    .append(`<tr class="active empty-state">
+                        <td colspan="3" class="text-center">Nothing to see here</td>
+                    </tr>`);
+                $('tbody', $endpointsTable).empty()
+                    .append(`<tr class="active empty-state">
+                        <td colspan="3" class="text-center">Nothing to see here</td>
+                    </tr>`);
+            });
+    });
+});

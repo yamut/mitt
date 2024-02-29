@@ -7,8 +7,15 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-12 w-100 d-flex justify-content-center">
+    <div class="col-6 d-flex justify-content-end">
         <img class="img-fluid mt-2" alt="mitt" style="height: 50px;" src="{{ \Illuminate\Support\Facades\Vite::asset('resources/images/mitt.svg') }}"/>
+    </div>
+    <div class="col-5 d-flex justify-content-end">
+        <button id="clear-data"
+                type="button"
+                data-source="{{ route('settings.clear') }}"
+                class="btn btn-primary"
+        >Clear data</button>
     </div>
 </div>
 <div class="row d-flex justify-content-center">

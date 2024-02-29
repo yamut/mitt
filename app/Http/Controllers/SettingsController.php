@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveSetting;
+use App\Models\Request;
 use App\Models\Response;
 use Illuminate\Http\JsonResponse;
 
@@ -24,5 +25,12 @@ class SettingsController extends Controller
     public function get(): JsonResponse
     {
         return response()->json(Response::all());
+    }
+
+    public function clear(): JsonResponse
+    {
+        Request::query()->delete();
+        Response::query()->delete();
+        return response()->json();
     }
 }
