@@ -16,8 +16,8 @@ $(function () {
             method: 'POST',
             url: $(this).data('save'),
             data: {
-                endpoint: $('#endpoint').val(),
-                code: $('#code').val(),
+                endpoint: $('#slug').val(),
+                code: $('#http_status').val(),
                 body: $('#body').val(),
                 _token: $('input[name=_token]').val(),
             },
@@ -46,8 +46,8 @@ $(function () {
                 $('tbody', $resultsTable).empty();
                 for (let i of response) {
                     $('tbody', $resultsTable).append(`<tr>
-                        <th>${i.path}</th>
-                        <th>${!i.body.length ? '<i>empty</i>' : i.body}</th>
+                        <th>${i.url}</th>
+                        <th>${!i.content.length ? '<i>empty</i>' : i.content}</th>
                         <th>${JSON.stringify(i.headers)}</th>
                     </tr>`)
                 }
@@ -60,8 +60,8 @@ $(function () {
                 $('tbody', $endpointsTable).empty();
                 for (let i of response) {
                     $('tbody', $endpointsTable).append(`<tr>
-                        <th>${i.endpoint}</th>
-                        <th>${i.code}</th>
+                        <th>${i.url}</th>
+                        <th>${i.http_status}</th>
                         <th>${i.body}</th>
                     </tr>`)
                 }

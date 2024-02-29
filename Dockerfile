@@ -23,12 +23,13 @@ RUN apt-get update \
     && echo "deb [signed-by=/etc/apt/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     && apt-get update \
     && apt-get install -y php8.3-cli \
-       php8.3-curl \
-       php8.3-mbstring \
-       php8.3-xml php8.3-bcmath \
-       php8.3-intl php8.3-readline \
-       php8.3-msgpack php8.3-igbinary php8.3-redis \
-       php8.3-pcov php8.3-xdebug \
+        php8.3-curl \
+        php8.3-mbstring \
+        php8.3-xml php8.3-bcmath \
+        php8.3-intl php8.3-readline \
+        php8.3-msgpack php8.3-igbinary php8.3-redis \
+        php8.3-pcov php8.3-xdebug \
+        apache2 libapache2-mod-php8.3 \
     && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
@@ -42,6 +43,7 @@ RUN apt-get update \
     && setcap "cap_net_bind_service=+ep" /usr/bin/php8.3 \
     && groupadd --force sail \
     && useradd -ms /bin/bash --no-user-group -u 1337 sail \
+    && rm index.html \
     && git clone -b main https://github.com/yamut/mitt.git . \
     && if [ ! -d /.composer ]; then mkdir /.composer; fi \
     && chmod -R ugo+rw /.composer \
@@ -51,7 +53,12 @@ RUN apt-get update \
     && npm run build \
     && npm ci --production \
     && php artisan key:generate \
-    && chmod +x /usr/local/bin/start-container
+    && chmod +x /usr/local/bin/start-container \
+    && php artisan migrate:fresh --force \
+    && a2enmod rewrite
+
+COPY docker/apache2/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/apache2/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 EXPOSE 80
 

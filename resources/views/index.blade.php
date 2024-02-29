@@ -16,16 +16,16 @@
 </div>
 <div class="row d-flex justify-content-center">
     <div class="col-4">
-        <label for="code" class="form-label">HTTP Status</label>
-        <select id="code" name="status" class="form-select">
+        <label for="http_status" class="form-label">HTTP Status</label>
+        <select id="http_status" name="http_status" class="form-select">
             @foreach(\App\Enums\HttpStatus::cases() as $httpStatus)
                 <option value="{{ $httpStatus->value }}">{{ $httpStatus->value }}: {{ $httpStatus->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="col-6">
-        <label for="endpoint" class="form-label">Endpoint</label>
-        <input id="endpoint" name="endpoint" type="text" class="form-control"/>
+        <label for="slug" class="form-label">Slug</label>
+        <input id="slug" name="slug" type="text" class="form-control"/>
     </div>
 </div>
 <div class="row d-flex justify-content-center my-2">

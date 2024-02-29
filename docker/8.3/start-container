@@ -10,6 +10,9 @@ fi
 
 chmod -R ugo+rw /.composer
 
+php artisan migrate:fresh --force
+apache2ctl start &
+
 if [ $# -gt 0 ]; then
     exec gosu $WWWUSER "$@"
 else
