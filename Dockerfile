@@ -24,7 +24,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y php8.3-cli \
         php8.3-curl \
-        php8.3-mbstring \
+        php8.3-mbstring php8.3-sqlite3 \
         php8.3-xml php8.3-bcmath \
         php8.3-intl php8.3-readline \
         php8.3-msgpack php8.3-igbinary php8.3-redis \
@@ -48,6 +48,8 @@ RUN apt-get update \
     && if [ ! -d /.composer ]; then mkdir /.composer; fi \
     && chmod -R ugo+rw /.composer \
     && cp .env.example .env \
+    && touch database/database.sqlite \
+    && chmod 777 database/database.sqlite \
     && composer i --no-dev \
     && npm ci \
     && npm run build \
@@ -55,6 +57,7 @@ RUN apt-get update \
     && php artisan key:generate \
     && chmod +x /usr/local/bin/start-container \
     && php artisan migrate:fresh --force \
+    && chown -R www-data:www-data * \
     && a2enmod rewrite
 
 COPY docker/apache2/000-default.conf /etc/apache2/sites-available/000-default.conf
