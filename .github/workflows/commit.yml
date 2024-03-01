@@ -1,0 +1,41 @@
+name: Commit build
+on: push
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: cli, curl, mbstring, sqlite3, xml, bcmath, intl, readline, msgpack, igbinary, redis, pcov, xdebug
+          tools: composer
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: yamut/mitt
+      - name: Build app
+        run: |
+          cp .env.example .env
+          composer i
+          npm ci
+          php artisan key:generate
+          php artisan migrate:fresh --force
+          npm run build
+      - name: phpcs
+        run: vendor/bin/phpcs
+      - name: phpstan
+        run: vendor/bin/phpstan
+      - name: Run phpunit
+        run: php artisan test

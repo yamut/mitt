@@ -16,8 +16,8 @@ $(function () {
             method: 'POST',
             url: $(this).data('save'),
             data: {
-                endpoint: $('#slug').val(),
-                code: $('#http_status').val(),
+                slug: $('#slug').val(),
+                http_status: $('#http_status').val(),
                 body: $('#body').val(),
                 _token: $('input[name=_token]').val(),
             },

@@ -6,15 +6,13 @@ use App\Models\Request as RequestModel;
 use App\Models\Response as ResponseModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class CatchController extends Controller
 {
     public function catch(Request $request, string $anything): JsonResponse
     {
         $response = ResponseModel::where('slug', '=', $anything)
-            ->first();
+            ->firstOrFail();
         $response->requests()->create(
             [
                 'headers' => $request->headers->all(),

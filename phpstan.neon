@@ -1,0 +1,14 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+parameters:
+    # 0-9 (9 is kind of annoying)
+    level: 8
+    paths:
+        - app
+        - config
+        - database/factories
+        - database/seeders
+        - tests
+    noUnnecessaryCollectionCall: false
+    checkGenericClassInNonGenericObjectType: false
+    checkModelProperties: true

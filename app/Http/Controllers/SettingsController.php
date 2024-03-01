@@ -13,8 +13,8 @@ class SettingsController extends Controller
     {
         Response::create(
             [
-                'http_status' => $request->integer('code'),
-                'slug' => $request->string('endpoint'),
+                'http_status' => $request->integer('http_status'),
+                'slug' => $request->string('slug'),
                 'body' => $request->string('body'),
                 'method' => 'GET', // todo: allow other methods
             ]
