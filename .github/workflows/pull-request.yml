@@ -1,8 +1,6 @@
 name: PR
 on:
   pull_request:
-    branches-ignore:
-      - main
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
