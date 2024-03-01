@@ -54,7 +54,7 @@ $(function () {
                     $('tbody', $resultsTable).append(`<tr>
                         <th>${i.url}</th>
                         <th>${!i.content.length ? '<i>empty</i>' : i.content}</th>
-                        <th>${JSON.stringify(i.headers)}</th>
+                        <th><pre>${JSON.stringify(i.headers, null, 4)}</pre></th>
                     </tr>`)
                 }
             })
@@ -66,14 +66,18 @@ $(function () {
                 $('tbody', $endpointsTable).empty();
                 for (let i of response) {
                     $('tbody', $endpointsTable).append(`<tr>
-                        <th>${i.url}</th>
+                        <th>${i.url}<button class="copy-url btn btn-outline-warning px-2 ms-2" data-copy="${i.url}" type="button"><i class="bi-clipboard"></i></button></th>
                         <th>${i.http_status}</th>
-                        <th>${i.body}</th>
+                        <th><pre>${i.body}</pre></th>
                     </tr>`)
                 }
 
             })
     }, 5000);
+    $(document).on('click', '.copy-url', function (e) {
+        e.preventDefault();
+        navigator.clipboard.writeText($(this).data('copy'));
+    })
     $('#clear-data').on('click', function () {
         $.get($(this).data('source'))
             .then(() => {
