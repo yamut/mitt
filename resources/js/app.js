@@ -2,8 +2,10 @@ import './bootstrap';
 import 'bootstrap';
 import '@popperjs/core';
 import jQuery from 'jquery';
+
 window.$ = jQuery;
 import parsley from "parsleyjs/dist/parsley.js";
+
 window.parsley = parsley;
 
 import.meta.glob([
@@ -19,6 +21,10 @@ $(function () {
             return;
         }
         $('#messages').empty();
+        let headers = {};
+        $('.headers-row').map(function () {
+            headers[$('.header-name', $(this)).val()] = $('.header-value', $(this)).val();
+        })
         $.ajax({
             method: 'POST',
             url: $('#save').data('save'),
@@ -27,9 +33,11 @@ $(function () {
                 http_status: $('#http_status').val(),
                 body: $('#body').val(),
                 _token: $('input[name=_token]').val(),
+                headers: headers,
             },
             success: function () {
                 $responseForm.trigger('reset');
+                $('.headers-row').remove();
             },
             error: function (response) {
                 $('#messages').append(
@@ -69,6 +77,7 @@ $(function () {
                         <th>${i.url}<button class="copy-url btn btn-outline-warning px-2 ms-2" data-copy="${i.url}" type="button"><i class="bi-clipboard"></i></button></th>
                         <th>${i.http_status}</th>
                         <th><pre>${i.body}</pre></th>
+                        <th><pre>${JSON.stringify(i.headers, null, 4)}</pre></th>
                     </tr>`)
                 }
 
@@ -91,4 +100,19 @@ $(function () {
                     </tr>`);
             });
     });
+    $('#add-header').on('click', function (e) {
+        e.preventDefault();
+        const nameId = `header-name-${Date.now()}`;
+        const valueId = `header-name-${Date.now()}`;
+        $('#headers').append(`<div class="headers-row d-flex justify-content-between">
+            <div class="col-5 justify-content-center">
+                <label for="${nameId}">Header name</label>
+                <input id="${nameId}" class="header-name form-control" type="text"/>
+            </div>
+            <div class="col-5 justify-content-center">
+                <label for="${valueId}">Header value</label>
+                <input id="${valueId}" class="header-value form-control" type="text"/>
+            </div>
+        </div>`)
+    })
 });

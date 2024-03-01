@@ -23,6 +23,7 @@ class CatchController extends Controller
         return response()->json(
             data: $response->body,
             status: $response->http_status,
+            headers: $response->headers ?? [],
         );
     }
 

@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center my-2">
-        <div class="col-10">
+        <div class="col-5">
             <label for="body">Body</label>
             <textarea id="body"
                       name="body"
@@ -48,6 +48,14 @@
                       required
             ></textarea>
         </div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-12 mt-2 pt-1">
+                    <button type="button" id="add-header" class="btn btn-success w-100">Add header</button>
+                </div>
+            </div>
+            <div id="headers" class="row"></div>
+        </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-10">
@@ -55,8 +63,7 @@
                    type="submit"
                    class="btn btn-lg btn-primary w-100"
                    data-save="{{ route('settings.save') }}"
-            >Save
-            </input>
+                   value="Save">
         </div>
     </div>
 </form>
@@ -93,17 +100,18 @@
         >
             <thead>
             <tr>
-                <th colspan="3" class="text-center">Available endpoints</th>
+                <th colspan="4" class="text-center">Available endpoints</th>
             </tr>
             <tr>
                 <th scope="col">Path</th>
                 <th scope="col">Code</th>
                 <th scope="col">Body</th>
+                <th scope="col">Headers</th>
             </tr>
             </thead>
             <tbody>
             <tr class="warning empty-state">
-                <td colspan="3" class="text-center">Nothing to see here</td>
+                <td colspan="4" class="text-center">Nothing to see here</td>
             </tr>
             </tbody>
         </table>

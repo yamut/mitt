@@ -17,6 +17,7 @@ class SettingsController extends Controller
                 'slug' => $request->string('slug'),
                 'body' => $request->string('body'),
                 'method' => 'GET', // todo: allow other methods
+                'headers' => $request->get('headers'),
             ]
         );
         return response()->json(); // todo: something

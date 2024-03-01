@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Request whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Request whereResponseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Request whereUpdatedAt($value)
+ * @property-read string $url
  * @mixin \Eloquent
  */
 class Request extends Model

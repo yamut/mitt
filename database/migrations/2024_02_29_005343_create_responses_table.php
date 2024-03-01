@@ -18,6 +18,8 @@ return new class extends Migration
                 ->nullable();
             $table->text('body')
                 ->nullable();
+            $table->text('headers')
+                ->nullable();
             $table->unique(['slug', 'method']);
         });
     }

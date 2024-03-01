@@ -17,6 +17,7 @@ class SaveSetting extends FormRequest
             'slug' => ['string', 'required', 'unique:App\Models\Response,'],
             'http_status' => ['required', 'integer', new EnumRule(HttpStatus::class)],
             'body' => ['string', 'sometimes', 'nullable'],
+            'headers' => ['sometimes', 'nullable', 'array'],
         ];
     }
 }
