@@ -2,28 +2,34 @@ import './bootstrap';
 import 'bootstrap';
 import '@popperjs/core';
 import jQuery from 'jquery';
-
 window.$ = jQuery;
+import parsley from "parsleyjs/dist/parsley.js";
+window.parsley = parsley;
 
 import.meta.glob([
     '../images/**',
 ]);
 
 $(function () {
-    $('#save').on('click', function () {
+    const $responseForm = $('#response-form');
+    $responseForm.on('submit', function (e) {
+        e.preventDefault();
+        $responseForm.parsley().validate();
+        if (!$responseForm.parsley().isValid()) {
+            return;
+        }
         $('#messages').empty();
         $.ajax({
             method: 'POST',
-            url: $(this).data('save'),
+            url: $('#save').data('save'),
             data: {
                 slug: $('#slug').val(),
                 http_status: $('#http_status').val(),
                 body: $('#body').val(),
                 _token: $('input[name=_token]').val(),
             },
-            success: function (response) {
-                console.log('done');
-                console.log(response);
+            success: function () {
+                $responseForm.trigger('reset');
             },
             error: function (response) {
                 $('#messages').append(
