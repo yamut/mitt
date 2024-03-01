@@ -1,5 +1,8 @@
-name: Commit build
-on: push
+name: main status
+on:
+  push:
+    branches:
+      - main
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}

@@ -1,5 +1,9 @@
 <img src="resources/images/mitt.svg" alt="mitt" width="75">
 
+# Mitt
+
+[![Status](https://github.com/yamut/mitt/actions/workflows/commit.yml/badge.svg)](https://github.com/yamut/mitt/actions/workflows/commit.yml)
+
 # Documentation in progress
 This is a web service to catch requests and respond in a predefined way. This is in active development.
 
