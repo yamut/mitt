@@ -4,13 +4,12 @@ namespace App\Http\Requests;
 
 use App\Enums\HttpStatus;
 use App\Rules\EnumRule;
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveSetting extends FormRequest
 {
     /**
-     * @return string[][]|ValidationRule[][]
+     * @return mixed[][]
      */
     public function rules(): array
     {
