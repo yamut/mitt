@@ -7,8 +7,8 @@ concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
-  test:
-    name: Run tests
+  build:
+    name: Build and push
     runs-on: ubuntu-latest
     permissions:
       actions: write
