@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Response whereMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Response whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Response whereUpdatedAt($value)
+ * @property array|null $headers
+ * @property-read string $url
+ * @method static \Illuminate\Database\Eloquent\Builder|Response whereHeaders($value)
  * @mixin \Eloquent
  */
 class Response extends Model
@@ -36,6 +39,11 @@ class Response extends Model
         'http_status',
         'slug',
         'body',
+        'headers',
+    ];
+
+    protected $casts = [
+        'headers' => 'array',
     ];
 
     protected $appends = [
