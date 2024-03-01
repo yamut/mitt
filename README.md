@@ -7,13 +7,13 @@
 # Documentation in progress
 This is a web service to catch requests and respond in a predefined way. This is in active development.
 
-Dockerhub link: https://hub.docker.com/repository/docker/danmattern/mitt/general
+Dockerhub link: https://hub.docker.com/repository/docker/yamut/mitt/general
 
 Example for docker-compose
 
-```dockerfile
+```yaml
     mitt:
-        image: 'danmattern/mitt:latest'
+        image: 'yamut/mitt:latest'
         networks:
             - sail
         ports:
@@ -29,10 +29,10 @@ To use
 6. `curl {url} {-H ... optional}`
 7. wait, you will see the caught request next poll
 
-To package docker build
+To test docker build
 
 ```shell
 docker build -t image_name .
-docker tag image_name:tag repo/image_name:tag
-docker push repo/image_name:tag
 ```
+
+Then run it
