@@ -36,3 +36,6 @@ docker build -t image_name .
 ```
 
 Then run it
+
+Developing:
+`git config --local core.hooksPath .githooks/`

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+vendor/bin/sail php vendor/bin/phpcs
+vendor/bin/sail php vendor/bin/phpstan
+vendor/bin/sail npm run lint
