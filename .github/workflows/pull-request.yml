@@ -39,6 +39,8 @@ jobs:
         run: vendor/bin/phpcs
       - name: phpstan
         run: vendor/bin/phpstan
+      - name: js lint
+        run: npm run lint
       - name: Run phpunit
         run: php artisan test
 
