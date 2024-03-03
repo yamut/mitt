@@ -1,4 +1,28 @@
 #!/usr/bin/env bash
-vendor/bin/sail php vendor/bin/phpcs
-vendor/bin/sail php vendor/bin/phpstan
-vendor/bin/sail npm run lint
+changed_files=($(git diff --cached --name-only --diff-filter=AM))
+has_php=0
+has_js=0
+for i in "${changed_files[@]}"
+do
+    if [[ "${has_php}" -eq "1" && "${has_js}" -eq 1 ]]
+    then
+        break
+    fi
+    if [[ "${has_js}" -ne "1" && "${i}" == *.js ]]
+    then
+        has_js=1
+    fi
+    if [[ "${has_php}" -ne "1" && "${i}" == *.php ]]
+    then
+        has_php=1
+    fi
+done
+if [[ "${has_php}" -eq "1" ]]
+then
+    vendor/bin/sail php vendor/bin/phpcs
+    vendor/bin/sail php vendor/bin/phpstan
+fi
+if [[ "${has_js}" -eq "1" ]]
+then
+    vendor/bin/sail npm run lint
+fi
