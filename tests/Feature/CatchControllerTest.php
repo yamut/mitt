@@ -11,7 +11,7 @@ class CatchControllerTest extends TestCase
     public function testCatches(): void
     {
         $response = Response::factory()->create();
-        $response = Response::find($response->id);
+        $response = Response::findOrFail($response->id);
         $this->get(route('catch', [$response->slug]))
             ->assertStatus($response->http_status);
         $this->assertTrue(

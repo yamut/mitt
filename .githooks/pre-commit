@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 changed_files=($(git diff --cached --name-only --diff-filter=AM))
 has_php=0
 has_js=0
