@@ -3,6 +3,7 @@
 # Mitt
 
 [![Status](https://github.com/yamut/mitt/actions/workflows/commit.yml/badge.svg)](https://github.com/yamut/mitt/actions/workflows/commit.yml)
+[![codecov](https://codecov.io/gh/yamut/mitt/graph/badge.svg?token=UIKN7J9VHL)](https://codecov.io/gh/yamut/mitt)
 
 # Documentation in progress
 This is a web service to catch requests and respond in a predefined way. This is in active development.
