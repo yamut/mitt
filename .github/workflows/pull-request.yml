@@ -42,7 +42,12 @@ jobs:
       - name: js lint
         run: npm run lint
       - name: Run phpunit
-        run: php artisan test
+        run: php artisan test --coverage --coverage-clover storage/coverage/coverage.xml
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: yamut/mitt
 
   build:
     name: Build
