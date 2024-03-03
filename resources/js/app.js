@@ -87,16 +87,19 @@ $(function () {
         navigator.clipboard.writeText($(this).data('copy'))
     })
     $('#clear-data').on('click', function () {
-        $.get($(this).data('source'))
-            .then(() => {
+        const me = $(this)
+        me.toggleClass('btn-primary').toggleClass('btn-danger')
+        $.get(me.data('source'))
+            .done(() => {
                 $('tbody', $resultsTable).empty()
                     .append(`<tr class="active empty-state">
                         <td colspan="3" class="text-center">Nothing to see here</td>
                     </tr>`)
                 $('tbody', $endpointsTable).empty()
                     .append(`<tr class="active empty-state">
-                        <td colspan="3" class="text-center">Nothing to see here</td>
+                        <td colspan="4" class="text-center">Nothing to see here</td>
                     </tr>`)
+                me.toggleClass('btn-primary').toggleClass('btn-danger')
             })
     })
     $('#add-header').on('click', function (e) {

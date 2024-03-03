@@ -11,11 +11,11 @@
         <img class="img-fluid mt-2" alt="mitt" style="height: 50px;"
              src="{{ \Illuminate\Support\Facades\Vite::asset('resources/images/mitt.svg') }}"/>
     </div>
-    <div class="col-5 d-flex justify-content-end">
+    <div class="col-5 d-flex justify-content-end pt-1">
         <button id="clear-data"
                 type="button"
                 data-source="{{ route('settings.clear') }}"
-                class="btn btn-primary"
+                class="btn btn-success"
         >Clear data
         </button>
     </div>
