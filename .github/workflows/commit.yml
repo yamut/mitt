@@ -44,7 +44,7 @@ jobs:
       - name: Run phpunit
         run: php artisan test --coverage --coverage-clover storage/coverage/coverage.xml
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.3.1
+        uses: codecov/codecov-action@v4.4.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: yamut/mitt
